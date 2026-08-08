@@ -92,7 +92,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1050;
     transition: var(--transition);
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
@@ -648,15 +648,34 @@ textarea.form-control {
         left: -100%;
         width: 100%;
         height: calc(100vh - 80px);
-        background-color: #ffffff;
+        background-color: #0b1120; /* Dark background so white text is visible */
         flex-direction: column;
         align-items: center;
-        padding-top: 50px;
+        padding-top: 30px;
+        padding-bottom: 50px;
         transition: 0.5s;
+        z-index: 1000;
+        overflow-y: auto;
     }
     
     .nav-links.active {
         left: 0;
+    }
+    
+    .nav-dropdown-content {
+        position: static;
+        display: block;
+        box-shadow: none;
+        background: transparent;
+        border-top: none;
+        padding: 10px 0;
+        text-align: center;
+    }
+    
+    .nav-dropdown-content a {
+        padding: 8px 15px !important;
+        font-size: 12px !important;
+        color: #a0aec0 !important;
     }
     
     .mobile-menu-btn {
@@ -921,7 +940,7 @@ textarea.form-control {
         flex-wrap: wrap;
     }
     .logo img {
-        height: 45px !important;
+        height: 60px !important;
     }
     .logo h1 {
         font-size: 20px !important;
@@ -942,8 +961,8 @@ textarea.form-control {
         text-overflow: ellipsis;
     }
     .logo img {
-        height: 40px !important;
-        margin-right: 10px;
+        height: 60px !important;
+        margin-right: 15px;
     }
     .services-grid, .projects-grid {
         grid-template-columns: 1fr !important;
@@ -1325,8 +1344,8 @@ header.sticky {
 
 @media (max-width: 768px) {
     .logo img {
-        height: 40px !important;
-        margin-right: 10px !important;
+        height: 60px !important;
+        margin-right: 15px !important;
     }
     .gold-va5 { font-size: 28px; }
     .gold-const { font-size: 11px; letter-spacing: 3px; margin-left: 3px; }
@@ -1335,7 +1354,7 @@ header.sticky {
 
 @media (max-width: 768px) {
     .logo img:nth-child(2) {
-        height: 25px !important;
+        height: 45px !important;
     }
 }
 
