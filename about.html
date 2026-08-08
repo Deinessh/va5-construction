@@ -87,34 +87,182 @@
                 <h2>Our Core Strengths</h2>
                 <p>We are reliable and fully in control of our projects and building sites.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card tilt-card tilt-card reveal-scale delay-100"
-                    style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
-                    <i class="fas fa-network-wired"
-                        style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
-                    <h3>Expert Knowledge</h3>
-                    <p style="color: var(--text-muted);">Expert knowledge in all the sectors with hands-on expertise
-                        handling core assets from the HUB of EPC Products Manufacturers.</p>
+            <style>
+                .carousel-wrapper {
+                    position: relative;
+                    padding: 0 50px;
+                }
+                .carousel-track {
+                    display: flex;
+                    gap: 30px;
+                    overflow-x: auto;
+                    scroll-behavior: smooth;
+                    scroll-snap-type: x mandatory;
+                    padding-bottom: 20px;
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                }
+                .carousel-track::-webkit-scrollbar {
+                    display: none;
+                }
+                .carousel-slide {
+                    border-radius: 8px;
+                    flex: 0 0 350px;
+                    scroll-snap-align: start;
+                }
+                @media (max-width: 768px) {
+                    .carousel-slide {
+                        flex: 0 0 100%;
+                    }
+                    .carousel-wrapper {
+                        padding: 0 40px;
+                    }
+                }
+                .carousel-btn {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: var(--primary-color);
+                    color: white;
+                    border: none;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    z-index: 10;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                    transition: 0.3s;
+                }
+                .carousel-btn:hover {
+                    background: var(--primary-hover);
+                }
+                #prevBtn {
+                    left: 0;
+                }
+                #nextBtn {
+                    right: 0;
+                }
+            </style>
+
+            <div class="carousel-wrapper">
+                <button id="prevBtn" class="carousel-btn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                
+                <div class="carousel-track" id="coreStrengthsTrack">
+                    <!-- Card 1 -->
+                    <div class="carousel-slide service-card tilt-card" style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
+                        <i class="fas fa-network-wired" style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3>Expert Knowledge</h3>
+                        <p style="color: var(--text-muted);">in all the sectors</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="carousel-slide service-card tilt-card" style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
+                        <i class="fas fa-hard-hat" style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3>Hands on Expertise</h3>
+                        <p style="color: var(--text-muted);">on handling core assets from the HUB of EPC Products Manufacturers</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="carousel-slide service-card tilt-card" style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
+                        <i class="fas fa-digital-tachograph" style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3>DIGITAL TWINS</h3>
+                        <p style="color: var(--text-muted);">(TECHNOLOGY & PEOPLE) FOR DATA ANALYTICS</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="carousel-slide service-card tilt-card" style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
+                        <i class="fas fa-tools" style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3>TAILORED SERVICES</h3>
+                        <p style="color: var(--text-muted);">(ONE STOP SOLUTION FOR ALL YOUR FACILITY NEEDS)</p>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="carousel-slide service-card tilt-card" style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
+                        <i class="fas fa-chart-line" style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h3>STANDARDS BOOST BUSINESS</h3>
+                        <p style="color: var(--text-muted);">Driving consistent quality and growth</p>
+                    </div>
                 </div>
-                <div class="service-card tilt-card tilt-card reveal-scale delay-200"
-                    style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
-                    <i class="fas fa-tools"
-                        style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
-                    <h3>Tailored Services</h3>
-                    <p style="color: var(--text-muted);">One stop solution for all your facility needs. Our standards
-                        boost your business capabilities.</p>
-                </div>
-                <div class="service-card tilt-card tilt-card reveal-scale delay-300"
-                    style="background: var(--darker-bg); border: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 40px;">
-                    <i class="fas fa-digital-tachograph"
-                        style="font-size: 50px; color: var(--primary-color); margin-bottom: 20px;"></i>
-                    <h3>Digital Twins</h3>
-                    <p style="color: var(--text-muted);">Leveraging technology and people for data analytics to unlock
-                        the power of modern engineering.</p>
-                </div>
+
+                <button id="nextBtn" class="carousel-btn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const track = document.getElementById('coreStrengthsTrack');
+                    const prevBtn = document.getElementById('prevBtn');
+                    const nextBtn = document.getElementById('nextBtn');
+                    
+                    let autoScrollInterval;
+                    
+                    // Helper function to calculate actual scroll distance
+                    const getScrollAmount = () => {
+                        const slide = track.querySelector('.carousel-slide');
+                        const style = window.getComputedStyle(track);
+                        const gap = parseFloat(style.gap) || 0;
+                        return slide.offsetWidth + gap;
+                    };
+
+                    const startAutoScroll = () => {
+                        autoScrollInterval = setInterval(() => {
+                            if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+                                track.scrollTo({ left: 0, behavior: 'smooth' }); // Reset to start
+                            } else {
+                                track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                            }
+                        }, 3000); // 3 seconds interval
+                    };
+
+                    const stopAutoScroll = () => {
+                        clearInterval(autoScrollInterval);
+                    };
+
+                    prevBtn.addEventListener('click', () => {
+                        track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                        stopAutoScroll();
+                        startAutoScroll();
+                    });
+
+                    nextBtn.addEventListener('click', () => {
+                        track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                        stopAutoScroll();
+                        startAutoScroll();
+                    });
+
+                    // Pause on hover
+                    track.parentElement.addEventListener('mouseenter', stopAutoScroll);
+                    track.parentElement.addEventListener('mouseleave', startAutoScroll);
+
+                    // Touch support for pausing
+                    track.parentElement.addEventListener('touchstart', stopAutoScroll);
+                    track.parentElement.addEventListener('touchend', startAutoScroll);
+
+                    startAutoScroll();
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title reveal-up">
+                <h4>Our Certifications</h4>
+                <h2>Accreditations &amp; Standards</h2>
+                <p>We adhere to the highest standards of quality and excellence.</p>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;" class="reveal-up delay-100">
+                <a href="IEC CERTIFICATE.pdf" target="_blank" class="btn" style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-file-pdf" style="font-size: 20px;"></i>
+                    IEC CERTIFICATE
+                </a>
+                <a href="ISO VA5.pdf" target="_blank" class="btn btn-outline" style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-file-pdf" style="font-size: 20px;"></i>
+                    ISO VA5 CERTIFICATE
+                </a>
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
