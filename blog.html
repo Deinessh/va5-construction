@@ -26,7 +26,7 @@
                 <img src="images/corporate/VA5.png" style="height: 40px;" alt="VA5 Construction" />
             </div>
             <nav class="nav-links">
-                <a href="index.html" class="active">HOME</a>
+                <a href="index.html">HOME</a>
                 <a href="about.html">ABOUT US</a>
                 <div class="nav-dropdown">
                     <a href="services.html" class="nav-dropdown-trigger">SERVICES <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <a href="projects.html">PROJECTS</a>
-                <a href="blog.html">BLOGS</a>
+                <a href="blog.html" class="active">BLOGS</a>
                 <a href="contact.html">CONTACT US</a>
             </nav>
             <button class="mobile-menu-btn">
@@ -65,64 +65,17 @@
                 <h4>Latest News</h4>
                 <h2>Insights &amp; Updates</h2>
             </div>
-            <div class="services-grid">
-                <!-- Blog Post 1 -->
-                <div class="blog-card tilt-card">
-                    <div class="blog-img">
-                        <img alt="Modern Architecture Trends" src="images/hero1.png" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> Oct 15, 2026</span>
-                            <span><i class="far fa-folder"></i> Architecture</span>
-                        </div>
-                        <h3>Modern Architecture Trends for 2026</h3>
-                        <p>Explore the latest trends in residential and commercial architecture, from sustainable
-                            materials to smart home integration and minimalist design.</p>
-                        <a href="#" style="color: var(--primary-color); font-weight: 500;">Read More <i
-                                class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
-                    </div>
-                </div>
-                <!-- Blog Post 2 -->
-                <div class="blog-card tilt-card">
-                    <div class="blog-img">
-                        <img alt="Interior Design" src="images/residential.png" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> Sep 28, 2026</span>
-                            <span><i class="far fa-folder"></i> Interior</span>
-                        </div>
-                        <h3>Choosing the Right Colors for Your Home</h3>
-                        <p>A comprehensive guide on selecting the perfect color palette to enhance the ambiance,
-                            lighting, and perceived space of your luxury villa.</p>
-                        <a href="#" style="color: var(--primary-color); font-weight: 500;">Read More <i
-                                class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
-                    </div>
-                </div>
-                <!-- Blog Post 3 -->
-                <div class="blog-card tilt-card">
-                    <div class="blog-img">
-                        <img alt="Commercial Construction" src="images/hero2.png" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> Aug 12, 2026</span>
-                            <span><i class="far fa-folder"></i> Construction</span>
-                        </div>
-                        <h3>The Importance of Structural Audits</h3>
-                        <p>Why regular structural audits are essential for older commercial buildings and how they
-                            ensure safety and compliance with modern regulations.</p>
-                        <a href="#" style="color: var(--primary-color); font-weight: 500;">Read More <i
-                                class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
-                    </div>
+            <div class="services-grid" id="blog-posts-container">
+                <!-- Clean Loading State -->
+                <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: #64748b;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; display: block;"></i>
+                    Loading latest articles...
                 </div>
             </div>
         </div>
     </section>
     <!-- Footer -->
     <footer>
-        <!-- Footer content same as other pages -->
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
@@ -207,6 +160,87 @@
         </a>
     </div>
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('blog-posts-container');
+            if (!container) return;
+
+            const apiUrl = 'http://localhost:8000/api/posts';
+
+            fetch(apiUrl)
+                .then(res => {
+                    if (!res.ok) throw new Error('API response not ok');
+                    return res.json();
+                })
+                .then(posts => {
+                    if (Array.isArray(posts) && posts.length > 0) {
+                        container.innerHTML = '';
+
+                        posts.forEach(post => {
+                            const dateStr = post.published_at 
+                                ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                                : 'Recent';
+                            
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = post.content || '';
+                            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+                            const excerpt = textContent.length > 130 ? textContent.substring(0, 130) + '...' : textContent;
+
+                            const imgSrc = post.image || 'images/hero1.png';
+                            const detailUrl = `blog-detail.html?id=${post.id}`;
+
+                            const card = document.createElement('div');
+                            card.className = 'blog-card tilt-card';
+                            card.style.cursor = 'pointer';
+                            
+                            card.innerHTML = `
+                                <div class="blog-img" style="height: 220px; overflow: hidden; position: relative;">
+                                    <a href="${detailUrl}">
+                                        <img alt="${post.title}" src="${imgSrc}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='images/hero1.png'" />
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-meta">
+                                        <span><i class="far fa-calendar-alt"></i> ${dateStr}</span>
+                                        <span><i class="far fa-folder"></i> Construction</span>
+                                    </div>
+                                    <h3><a href="${detailUrl}" style="color: inherit; text-decoration: none;">${post.title}</a></h3>
+                                    <p><a href="${detailUrl}" style="color: inherit; text-decoration: none;">${excerpt}</a></p>
+                                    <a href="${detailUrl}" class="read-more-btn" style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.95rem; margin-top: 0.5rem; display: inline-flex; align-items: center;">Read More <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+                                </div>
+                            `;
+                            
+                            container.appendChild(card);
+                        });
+                    } else {
+                        container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #64748b;">No blog posts available.</div>';
+                    }
+                })
+                .catch(err => {
+                    console.log('Using static fallback for blog page:', err);
+                    renderStaticFallback(container);
+                });
+        });
+
+        function renderStaticFallback(container) {
+            container.innerHTML = `
+                <div class="blog-card tilt-card" style="cursor: pointer;">
+                    <div class="blog-img" style="height: 220px; overflow: hidden;">
+                        <a href="blog-detail.html?id=1"><img alt="Modern Architecture Trends" src="images/hero1.png" style="width: 100%; height: 100%; object-fit: cover;" /></a>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> Oct 15, 2026</span>
+                            <span><i class="far fa-folder"></i> Architecture</span>
+                        </div>
+                        <h3><a href="blog-detail.html?id=1" style="color: inherit; text-decoration: none;">Modern Architecture Trends for 2026</a></h3>
+                        <p><a href="blog-detail.html?id=1" style="color: inherit; text-decoration: none;">Explore the latest trends in residential and commercial architecture, from sustainable materials to smart home integration.</a></p>
+                        <a href="blog-detail.html?id=1" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Read More <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
 </body>
 
 </html>
