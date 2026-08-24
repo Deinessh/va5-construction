@@ -92,22 +92,39 @@
             <!-- Contact Form -->
             <div class="contact-form">
                 <h3 style="margin-bottom: 25px; font-size: 24px;">Send us a Message</h3>
-                <form action="#" method="POST">
+                <form onsubmit="sendToWhatsApp(event)">
                     <div class="form-group">
-                        <input class="form-control" placeholder="Your Name" required="" type="text" />
+                        <input id="wa-name" class="form-control" placeholder="Your Name" required="" type="text" />
                     </div>
                     <div class="form-group">
-                        <input class="form-control" placeholder="Your Email" required="" type="email" />
+                        <input id="wa-email" class="form-control" placeholder="Your Email" required="" type="email" />
                     </div>
                     <div class="form-group">
-                        <input class="form-control" placeholder="Subject" type="text" />
+                        <input id="wa-subject" class="form-control" placeholder="Subject" type="text" />
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Message" required=""></textarea>
+                        <textarea id="wa-message" class="form-control" placeholder="Message" required=""></textarea>
                     </div>
                     <button class="btn" type="submit">Send Message</button>
                 </form>
             </div>
+            
+            <script>
+                function sendToWhatsApp(event) {
+                    event.preventDefault();
+                    
+                    const name = document.getElementById('wa-name').value;
+                    const email = document.getElementById('wa-email').value;
+                    const subject = document.getElementById('wa-subject').value;
+                    const message = document.getElementById('wa-message').value;
+                    
+                    const phone = "919840988266";
+                    const text = `Hello VA5 Construction!\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
+                    
+                    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
+                    window.open(whatsappUrl, '_blank');
+                }
+            </script>
         </div>
     </section>
     <!-- Map Section -->
